@@ -3,795 +3,748 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EcoWave — Hidrate-se. Preserve-se. Evolua.</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<title>EcoWave</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
  
   :root {
-    --green-deep: #1a3d1f;
-    --green-mid:  #2d6a35;
-    --green-bright: #4caf6b;
-    --green-light: #a8d5b5;
-    --green-pale:  #e8f5ec;
-    --navy:        #0d2233;
-    --navy-mid:    #1a3a52;
-    --blue-accent: #2196c4;
-    --cream:       #f5f2ea;
-    --text-main:   #0d2233;
-    --text-muted:  #4a6070;
-    --white:       #ffffff;
+    --green: #4caf6b;
+    --green-dark: #4caf6b;
+    --green-light: rgba(76,175,107,0.12);
+    --green-bright: #6dcc88;
+    --text: #f0f0f0;
+    --muted: #8a8a9a;
+    --white: #0f0f13;
+    --bg: #13131a;
+    --card: #1a1a24;
+    --border: rgba(255,255,255,0.07);
   }
  
   html { scroll-behavior: smooth; }
  
   body {
     font-family: 'Inter', sans-serif;
-    color: var(--text-main);
+    color: var(--text);
     background: var(--white);
-    line-height: 1.7;
+    line-height: 1.6;
   }
  
-  h1, h2, h3, .display { font-family: 'Syne', sans-serif; }
- 
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 5%;
-    height: 64px;
-    background: rgba(13, 34, 51, 0.92);
+  /* ── HEADER ── */
+  #header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15,15,19,0.92);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid var(--border);
   }
  
-  .nav-logo {
-    display: flex; align-items: center; gap: 10px;
-    font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800;
-    color: var(--white); text-decoration: none;
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 6%;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 24px;
   }
  
-  .nav-logo .eco { color: var(--green-bright); }
-  .nav-logo .wave { color: var(--white); }
- 
-  .logo-drop {
-    width: 28px; height: 28px;
-    background: var(--green-bright);
-    border-radius: 50% 50% 50% 0;
-    transform: rotate(-45deg);
-    display: flex; align-items: center; justify-content: center;
+  .logo {
+    font-size: 18px;
+    font-weight: 600;
+    color: #f0f0f0;
+    text-decoration: none;
+    white-space: nowrap;
   }
-  .logo-drop::after {
-    content: '';
-    width: 10px; height: 10px;
-    background: var(--navy);
-    border-radius: 50%;
+  .logo span { color: var(--green); }
+ 
+  #nav-links {
+    display: flex;
+    list-style: none;
+    gap: 28px;
   }
- 
-  .nav-links { display: flex; gap: 28px; list-style: none; }
-  .nav-links a { font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color .2s; }
-  .nav-links a:hover { color: var(--green-bright); }
- 
-  .nav-cta {
-    padding: 9px 20px; border-radius: 50px;
-    background: var(--green-bright); color: var(--navy);
-    font-size: 13px; font-weight: 600; border: none; cursor: pointer;
-    transition: background .2s;
+  #nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color .2s;
   }
-  .nav-cta:hover { background: var(--green-light); }
+  #nav-links a:hover { color: #f0f0f0; }
  
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    background: linear-gradient(160deg, var(--navy) 0%, var(--green-deep) 60%, #1e5c2a 100%);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center;
-    padding: 100px 5% 60px;
-    position: relative; overflow: hidden;
+  .btn {
+    display: inline-block;
+    padding: 9px 22px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    transition: .2s;
+    white-space: nowrap;
   }
  
-  .hero::before {
-    content: '';
-    position: absolute; bottom: -2px; left: 0; right: 0; height: 120px;
-    background: var(--white);
-    clip-path: ellipse(60% 100% at 50% 100%);
+  .btn-default { background: var(--green); color: #0a1f0e; }
+  .btn-default:hover { background: var(--green-bright); }
+ 
+  .btn-outlined {
+    background: transparent;
+    color: var(--green);
+    border: 1.5px solid var(--green);
+  }
+  .btn-outlined:hover { background: var(--green-light); }
+ 
+  .btn-mobile {
+    display: none;
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #f0f0f0;
   }
  
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 6px 16px; border-radius: 50px;
-    background: rgba(76, 175, 107, 0.15);
-    border: 1px solid rgba(76, 175, 107, 0.3);
-    color: var(--green-bright); font-size: 12px;
-    margin-bottom: 28px;
-  }
-  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-bright); }
- 
-  .hero h1 {
-    font-size: clamp(40px, 7vw, 72px);
-    font-weight: 800;
-    line-height: 1.05;
-    color: var(--white);
-    max-width: 700px;
-    margin-bottom: 8px;
-  }
-  .hero h1 .eco-text { color: var(--green-bright); }
- 
-  .hero-slogan {
-    font-size: clamp(14px, 2vw, 18px);
-    color: var(--green-light);
-    letter-spacing: 0.06em;
-    margin-bottom: 20px;
-  }
- 
-  .hero-desc {
-    font-size: 16px; color: rgba(255,255,255,0.6);
-    max-width: 480px; margin: 0 auto 36px;
-  }
- 
-  .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
- 
-  .btn-hero {
-    padding: 14px 32px; border-radius: 50px;
-    background: var(--green-bright); color: var(--navy);
-    font-size: 15px; font-weight: 600; border: none; cursor: pointer;
-    transition: transform .15s, background .2s;
-  }
-  .btn-hero:hover { background: #6dcc88; transform: translateY(-2px); }
- 
-  .btn-hero-ghost {
-    padding: 14px 32px; border-radius: 50px;
-    background: transparent; color: var(--white);
-    font-size: 15px; font-weight: 500;
-    border: 1px solid rgba(255,255,255,0.25); cursor: pointer;
-    transition: border-color .2s;
-  }
-  .btn-hero-ghost:hover { border-color: rgba(255,255,255,0.6); }
- 
-  .hero-visual {
-    margin-top: 50px;
-    position: relative; display: inline-block;
-  }
- 
-  .bottle-mockup {
-    width: 160px; height: 280px;
-    background: linear-gradient(160deg, #2d6a35, #0d3518);
-    border-radius: 24px 24px 16px 16px;
-    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
-    padding-top: 18px;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
-    position: relative;
+  /* ── HOME ── */
+  #home {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    align-items: center;
+    gap: 0 40px;
+    padding: 80px 6%;
+    max-width: 1200px;
     margin: 0 auto;
   }
  
-  .bottle-screen {
-    width: 110px; height: 60px;
-    background: #061810;
-    border-radius: 8px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 4px;
-    border: 1px solid rgba(76,175,107,0.4);
+  .home-image {
+    grid-column: 2;
+    grid-row: 1 / 4;
+    width: 100%;
+    max-width: 420px;
+    justify-self: center;
+    border-radius: 24px;
+    object-fit: cover;
+    aspect-ratio: 4/5;
+    background: var(--card);
   }
  
-  .bottle-screen .screen-vol {
-    font-family: 'Syne', sans-serif; font-weight: 700;
-    font-size: 22px; color: var(--green-bright);
-  }
- 
-  .bottle-screen .screen-unit { font-size: 10px; color: var(--green-light); }
- 
-  .bottle-bar-wrap {
-    width: 90px; margin-top: 16px;
-    height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px;
-  }
-  .bottle-bar { width: 70%; height: 100%; background: var(--green-bright); border-radius: 3px; }
- 
-  .bottle-cap {
-    position: absolute; top: -14px;
-    width: 60px; height: 20px;
-    background: #111;
-    border-radius: 6px 6px 0 0;
-  }
- 
-  .phone-chip {
-    position: absolute; right: -70px; top: 60px;
-    width: 100px; padding: 10px 12px;
-    background: var(--navy-mid);
-    border-radius: 12px;
+  .home-tag {
+    grid-column: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--green);
+    background: var(--green-light);
+    border-radius: 20px;
+    padding: 4px 12px;
+    margin-bottom: 4px;
+    width: fit-content;
     border: 1px solid rgba(76,175,107,0.2);
-    text-align: left;
   }
  
-  .phone-chip .drop-icon {
-    font-size: 22px; margin-bottom: 4px; display: block;
+  .home-title {
+    grid-column: 1;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 600;
+    line-height: 1.15;
+    color: #f0f0f0;
+    margin-bottom: 16px;
+  }
+  .home-title span { color: var(--green); }
+ 
+  .home-description {
+    grid-column: 1;
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 380px;
+    margin-bottom: 28px;
   }
  
-  .phone-chip .chip-label { font-size: 9px; color: var(--green-light); display: block; }
-  .phone-chip .chip-value { font-size: 14px; font-weight: 600; color: var(--white); }
- 
-  /* ── PROOF BAR ── */
-  .proof-bar {
-    background: var(--cream);
-    padding: 20px 5%;
-    display: flex; align-items: center; justify-content: center;
-    gap: 32px; flex-wrap: wrap;
-    border-bottom: 1px solid #e0dbd0;
+  .home-actions {
+    grid-column: 1;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
   }
  
-  .proof-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); }
-  .proof-item strong { color: var(--text-main); }
-  .proof-divider { width: 1px; height: 20px; background: #ccc; }
- 
-  /* ── SECTION BASE ── */
-  section { padding: 80px 5%; }
-  .section-eyebrow { font-size: 11px; letter-spacing: 0.14em; color: var(--green-mid); text-transform: uppercase; margin-bottom: 10px; }
-  .section-title { font-size: clamp(24px, 4vw, 36px); font-weight: 800; color: var(--text-main); margin-bottom: 14px; line-height: 1.15; }
-  .section-sub { font-size: 15px; color: var(--text-muted); max-width: 480px; }
- 
-  /* ── PRODUTO ── */
-  .product-section { background: var(--white); }
-  .product-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 60px; align-items: center; margin-top: 48px;
+  /* ── TRENDING ── */
+  #trending {
+    padding: 80px 6%;
+    background: var(--bg);
   }
  
-  .product-visual-box {
-    background: var(--green-pale);
-    border-radius: 24px; padding: 40px;
-    display: flex; align-items: center; justify-content: center;
-    min-height: 320px;
-    position: relative; overflow: hidden;
+  #trending .inner { max-width: 1200px; margin: 0 auto; }
+ 
+  .title {
+    font-size: 26px;
+    font-weight: 600;
+    color: #f0f0f0;
+    margin-bottom: 36px;
   }
  
-  .product-visual-box::before {
-    content: '';
-    position: absolute; width: 280px; height: 280px;
-    border-radius: 50%;
-    background: rgba(76,175,107,0.12);
-    top: -60px; right: -60px;
+  .trending-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
   }
  
-  .big-bottle {
-    width: 120px; height: 220px;
-    background: linear-gradient(150deg, #3a8045, #0d3518);
-    border-radius: 20px 20px 14px 14px;
-    position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  .trending-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color .2s;
+  }
+  .trending-card:hover { border-color: rgba(76,175,107,0.4); }
+ 
+  .trending-card img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    background: #1f1f2e;
+    display: block;
   }
  
-  .big-bottle::after {
-    content: '750ml';
-    position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
-    font-family: 'Syne', sans-serif; font-weight: 700;
-    font-size: 14px; color: var(--green-bright);
+  .trending-card-body { padding: 14px 16px 16px; }
+ 
+  .trending-rate {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+  .trending-rate i { font-size: 11px; }
+ 
+  .trending-card-description {
+    font-size: 15px;
+    font-weight: 500;
+    color: #f0f0f0;
+  }
+  .trending-card-description span {
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+    margin-top: 2px;
   }
  
-  .big-bottle-cap {
-    position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
-    width: 50px; height: 22px;
-    background: #111; border-radius: 5px 5px 0 0;
+  /* ── ABOUT ── */
+  #about {
+    padding: 80px 6%;
+    max-width: 1200px;
+    margin: 0 auto;
   }
  
-  .feat-list { display: flex; flex-direction: column; gap: 20px; }
- 
-  .feat-item {
-    display: flex; gap: 14px; align-items: flex-start;
-    padding: 16px; border-radius: 12px;
-    border: 1px solid #e8f5ec;
-    transition: border-color .2s, background .2s;
-  }
-  .feat-item:hover { border-color: var(--green-bright); background: var(--green-pale); }
- 
-  .feat-icon-box {
-    width: 40px; height: 40px; min-width: 40px;
-    border-radius: 10px; background: var(--green-pale);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+    align-items: start;
   }
  
-  .feat-item h3 { font-size: 14px; font-weight: 600; margin-bottom: 3px; color: var(--text-main); }
-  .feat-item p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
- 
-  /* ── COMO FUNCIONA ── */
-  .how-section { background: var(--navy); }
-  .how-section .section-title { color: var(--white); }
-  .how-section .section-sub { color: rgba(255,255,255,0.5); }
- 
-  .steps-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2px; margin-top: 48px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 16px; overflow: hidden;
+  .about-image {
+    width: 100%;
+    border-radius: 16px;
+    object-fit: cover;
+    aspect-ratio: 3/4;
+    background: var(--green-light);
+    display: block;
   }
  
-  .step-box {
-    padding: 32px 24px; background: var(--navy);
-    position: relative;
+  .about-info h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .about-info h3 span { color: var(--green); }
+ 
+  .about-info p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+  .about-info p span { color: var(--green); font-weight: 500; }
+ 
+  /* ── PRODUCTS ── */
+  #products {
+    padding: 80px 6%;
+    background: var(--bg);
+  }
+  #products .inner { max-width: 1200px; margin: 0 auto; }
+ 
+  .products-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
   }
  
-  .step-num {
-    font-family: 'Syne', sans-serif; font-weight: 800;
-    font-size: 48px; color: rgba(76,175,107,0.15);
-    line-height: 1; margin-bottom: 16px;
-  }
- 
-  .step-box h3 { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
-  .step-box p { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
- 
-  .step-icon { font-size: 28px; margin-bottom: 12px; display: block; }
- 
-  /* ── SUSTENTABILIDADE ── */
-  .eco-section { background: var(--green-pale); }
- 
-  .eco-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 16px; margin-top: 40px;
-  }
- 
-  .eco-card {
+  .products-card {
     background: var(--white);
-    border-radius: 16px; padding: 24px 20px;
-    border: 1px solid #c8e6ce;
-    text-align: center;
+    border: 1px solid #e8f5ec;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color .2s;
+  }
+  .products-card:hover { border-color: var(--green-bright); }
+ 
+  .products-card img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    background: var(--green-light);
+    display: block;
   }
  
-  .eco-card .eco-icon { font-size: 32px; display: block; margin-bottom: 12px; }
-  .eco-card h3 { font-size: 13px; font-weight: 600; color: var(--green-deep); margin-bottom: 6px; }
-  .eco-card p { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
- 
-  /* ── PÚBLICO ── */
-  .audience-section { background: var(--white); }
- 
-  .audience-grid {
-    display: flex; gap: 12px; flex-wrap: wrap; margin-top: 36px;
+  .product-content {
+    padding: 14px 16px 16px;
   }
- 
-  .audience-pill {
-    display: flex; align-items: center; gap: 10px;
-    padding: 14px 20px; border-radius: 50px;
-    background: var(--green-pale);
-    border: 1px solid #c8e6ce;
-    font-size: 14px; color: var(--green-deep); font-weight: 500;
+  .product-content h3 {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
   }
- 
-  .audience-pill .pill-icon { font-size: 20px; }
- 
-  /* ── DEPOIMENTOS ── */
-  .testi-section { background: var(--cream); }
- 
-  .testi-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px; margin-top: 40px;
+  .product-content h3 span {
+    color: var(--green);
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+    margin-top: 2px;
   }
- 
-  .testi-card {
-    background: var(--white); border-radius: 16px; padding: 24px;
-    border: 1px solid #e0dbd0;
-  }
- 
-  .stars { color: #f5a623; font-size: 13px; margin-bottom: 12px; }
-  .testi-card p { font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px; }
-  .testi-author { display: flex; align-items: center; gap: 10px; }
- 
-  .avatar-circle {
-    width: 32px; height: 32px; border-radius: 50%;
-    background: var(--green-pale);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 600; color: var(--green-deep);
-  }
- 
-  .testi-author .author-info { font-size: 12px; }
-  .testi-author .author-name { font-weight: 600; color: var(--text-main); }
-  .testi-author .author-role { color: var(--text-muted); }
- 
-  /* ── PRICING ── */
-  .pricing-section { background: var(--white); }
- 
-  .pricing-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px; margin-top: 40px; align-items: start;
-  }
- 
-  .plan {
-    border-radius: 20px; padding: 28px 24px;
-    border: 1.5px solid #e8f5ec;
-  }
- 
-  .plan.featured {
-    border-color: var(--green-bright);
-    background: var(--green-deep); color: var(--white);
-    transform: scale(1.02);
-  }
- 
-  .plan-badge {
-    display: inline-block; font-size: 10px; padding: 3px 10px;
-    border-radius: 50px; background: var(--green-bright); color: var(--navy);
-    font-weight: 600; margin-bottom: 12px;
-  }
- 
-  .plan h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
-  .plan .price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 32px; margin-bottom: 2px; }
-  .plan .price sup { font-size: 16px; vertical-align: top; margin-top: 8px; display: inline-block; }
-  .plan .period { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
-  .plan.featured .period { color: rgba(255,255,255,0.5); }
- 
-  .plan ul { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
-  .plan ul li { font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
-  .plan.featured ul li { color: rgba(255,255,255,0.7); }
-  .plan ul li::before { content: '✓'; color: var(--green-bright); font-weight: 700; }
- 
-  .plan-btn {
-    width: 100%; padding: 12px; border-radius: 50px;
-    font-size: 13px; font-weight: 600; cursor: pointer;
-    border: 1.5px solid #c8e6ce; background: transparent;
-    color: var(--text-main); transition: background .2s;
-  }
-  .plan-btn:hover { background: var(--green-pale); }
-  .plan.featured .plan-btn {
-    background: var(--green-bright); border-color: var(--green-bright); color: var(--navy);
-  }
-  .plan.featured .plan-btn:hover { background: #6dcc88; }
- 
-  /* ── FAQ ── */
-  .faq-section { background: var(--green-pale); }
-  .faq-list { margin-top: 40px; display: flex; flex-direction: column; gap: 0; max-width: 680px; }
-  .faq-item { border-bottom: 1px solid #c8e6ce; padding: 18px 0; }
-  .faq-q { font-size: 14px; font-weight: 600; color: var(--text-main); margin-bottom: 8px; }
-  .faq-a { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
- 
-  /* ── CTA FINAL ── */
-  .cta-section {
-    background: linear-gradient(135deg, var(--green-deep), var(--navy));
-    text-align: center; padding: 100px 5%;
-  }
- 
-  .cta-section h2 { font-size: clamp(28px, 5vw, 48px); font-weight: 800; color: var(--white); margin-bottom: 12px; }
-  .cta-section p { font-size: 15px; color: rgba(255,255,255,0.55); max-width: 400px; margin: 0 auto 36px; }
  
   /* ── FOOTER ── */
   footer {
-    background: var(--navy); padding: 28px 5%;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 12px;
+    padding: 24px 6%;
+    border-top: 1px solid #f0f0f0;
+    text-align: center;
+  }
+  footer p {
+    font-size: 12px;
+    color: #aaa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
   }
  
-  .footer-logo {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px; color: var(--white);
-  }
-  .footer-logo .eco { color: var(--green-bright); }
+  /* ── MOBILE ── */
+  @media (max-width: 700px) {
+    .btn-mobile { display: block; }
+    #nav-links { display: none; }
+    #nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 64px;
+      left: 0; right: 0;
+      background: var(--white);
+      border-bottom: 1px solid #eee;
+      padding: 16px 6%;
+      gap: 16px;
+    }
  
-  .footer-links { display: flex; gap: 20px; }
-  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.35); text-decoration: none; }
-  .footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); }
+    #home {
+      grid-template-columns: 1fr;
+      padding: 48px 6% 40px;
+    }
+    .home-image { display: none; }
+    .home-title { font-size: 28px; }
  
-  /* ── RESPONSIVE ── */
-  @media (max-width: 680px) {
-    .product-grid { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
-    .phone-chip { display: none; }
+    .about-content { grid-template-columns: 1fr; }
+    .about-image { aspect-ratio: 16/9; }
   }
 </style>
 </head>
 <body>
  
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">
-    <div class="logo-drop"></div>
-    <span><span class="eco">Eco</span><span class="wave">Wave</span></span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#produto">Produto</a></li>
-    <li><a href="#como-funciona">Como funciona</a></li>
-    <li><a href="#sustentabilidade">Eco</a></li>
-    <li><a href="#precos">Preços</a></li>
-  </ul>
-  <button class="nav-cta">Pedir agora</button>
-</nav>
+<!-- HEADER -->
+<header id="header">
+  <nav class="nav-bar">
+    <a href="#home" class="logo">Eco<span>Wave</span></a>
  
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-badge"><span class="dot"></span> Garrafa inteligente + app integrado</div>
-  <h1><span class="eco-text">Eco</span>Wave</h1>
-  <p class="hero-slogan">Hidrate-se. Preserve-se. Evolua.</p>
-  <p class="hero-desc">A garrafa reutilizável que monitora sua hidratação e cuida do planeta ao mesmo tempo.</p>
-  <div class="hero-btns">
-    <button class="btn-hero">Quero a minha →</button>
-    <button class="btn-hero-ghost">Ver como funciona</button>
-  </div>
+    <button class="btn btn-mobile" onclick="document.getElementById('nav-links').classList.toggle('open')">
+      <i class="fa-solid fa-bars"></i>
+    </button>
  
-  <div class="hero-visual">
-    <div class="bottle-mockup">
-      <div class="bottle-cap"></div>
-      <div class="bottle-screen">
-        <span class="screen-vol">750</span>
-        <span class="screen-unit">ml restantes</span>
-      </div>
-      <div class="bottle-bar-wrap"><div class="bottle-bar"></div></div>
-    </div>
-    <div class="phone-chip">
-      <span class="drop-icon">💧</span>
-      <span class="chip-label">Meta diária</span>
-      <span class="chip-value">82%</span>
-    </div>
-  </div>
-</section>
+    <ul id="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#trending">Em alta</a></li>
+      <li><a href="#about">Sobre nós</a></li>
+      <li><a href="#products">Novidades</a></li>
+    </ul>
  
-<!-- PROOF BAR -->
-<div class="proof-bar">
-  <div class="proof-item">💧 <strong>Reduz 90%</strong> do uso de plástico</div>
-  <div class="proof-divider"></div>
-  <div class="proof-item">📱 <strong>App</strong> iOS e Android</div>
-  <div class="proof-divider"></div>
-  <div class="proof-item">♻️ <strong>100%</strong> materiais recicláveis</div>
-  <div class="proof-divider"></div>
-  <div class="proof-item">⭐ <strong>4.9</strong> de avaliação</div>
-</div>
+    <a href="https://wa.me/5511999999999?text=Olá%2C%20vim%20pelo%20site!" class="btn btn-default">Contatar</a>
+  </nav>
+</header>
  
-<!-- PRODUTO -->
-<section class="product-section" id="produto">
-  <p class="section-eyebrow">EcoBottle</p>
-  <h2 class="section-title">Uma garrafa que pensa por você</h2>
-  <p class="section-sub">Tecnologia e sustentabilidade no mesmo produto — bonito, inteligente e responsável.</p>
+<!-- MAIN -->
+<main>
  
-  <div class="product-grid">
-    <div class="product-visual-box">
-      <div class="big-bottle">
-        <div class="big-bottle-cap"></div>
-      </div>
+  <!-- HOME -->
+  <section id="home">
+    <div class="home-tag">
+      <i class="fa-solid fa-droplet" style="font-size:11px"></i> Garrafa inteligente + app
     </div>
  
-    <div class="feat-list">
-      <div class="feat-item">
-        <div class="feat-icon-box">📊</div>
-        <div>
-          <h3>Display inteligente</h3>
-          <p>Veja em tempo real quanto você já bebeu, direto na garrafa. Sem precisar abrir o app.</p>
+    <h1 class="home-title">
+      Hidrate-se.<br>Preserve-se.<br><span>Evolua.</span>
+    </h1>
+ 
+    <p class="home-description">
+      A EcoBottle monitora sua hidratação em tempo real e ajuda o planeta a respirar melhor.
+    </p>
+ 
+    <div class="home-actions">
+      <a href="#products" class="btn btn-default">Conhecer</a>
+      <a href="https://wa.me/5511999999999" class="btn btn-outlined">Contatar</a>
+    </div>
+ 
+    <div class="home-image" style="grid-column:2;grid-row:1/5;width:100%;max-width:420px;justify-self:center;"><svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:24px;display:block;">
+  <rect width="400" height="500" fill="#d4edda"/>
+  <!-- folhas fundo -->
+  <ellipse cx="60" cy="80" rx="50" ry="28" fill="#b8dfc2" transform="rotate(-30 60 80)"/>
+  <ellipse cx="340" cy="420" rx="55" ry="25" fill="#b8dfc2" transform="rotate(20 340 420)"/>
+  <ellipse cx="350" cy="100" rx="40" ry="20" fill="#c8e6ce" transform="rotate(45 350 100)"/>
+  <ellipse cx="50" cy="400" rx="45" ry="22" fill="#c8e6ce" transform="rotate(-20 50 400)"/>
+  <!-- sombra garrafa -->
+  <ellipse cx="200" cy="460" rx="60" ry="12" fill="#a8d5b5" opacity="0.5"/>
+  <!-- corpo garrafa -->
+  <rect x="140" y="120" width="120" height="310" rx="20" fill="#1a3d1f"/>
+  <!-- reflexo lateral -->
+  <rect x="150" y="130" width="18" height="290" rx="8" fill="#2d6a35" opacity="0.5"/>
+  <!-- tampa -->
+  <rect x="155" y="98" width="90" height="28" rx="8" fill="#0d2010"/>
+  <rect x="170" y="90" width="60" height="14" rx="5" fill="#111"/>
+  <!-- display screen -->
+  <rect x="155" y="148" width="90" height="64" rx="8" fill="#061810" stroke="#4caf6b" stroke-width="1.5"/>
+  <text x="200" y="175" text-anchor="middle" font-family="monospace" font-size="20" font-weight="bold" fill="#4caf6b">750</text>
+  <text x="200" y="194" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#a8d5b5">ml restantes</text>
+  <!-- barra de progresso -->
+  <rect x="160" y="226" width="80" height="6" rx="3" fill="#0a2a12"/>
+  <rect x="160" y="226" width="52" height="6" rx="3" fill="#4caf6b"/>
+  <!-- anel decorativo garrafa -->
+  <rect x="140" y="390" width="120" height="12" rx="4" fill="#2d6a35"/>
+  <!-- chip flutuante app -->
+  <rect x="270" y="190" width="88" height="64" rx="10" fill="white" stroke="#c8e6ce" stroke-width="1"/>
+  <text x="279" y="210" font-family="sans-serif" font-size="8" fill="#888">Meta diária</text>
+  <text x="279" y="230" font-family="sans-serif" font-size="20" font-weight="600" fill="#1a3d1f">82%</text>
+  <circle cx="285" cy="240" r="5" fill="#eaf3de" stroke="#4caf6b" stroke-width="1"/>
+  <rect x="295" y="238" width="30" height="4" rx="2" fill="#eaf3de"/>
+  <rect x="295" y="238" width="20" height="4" rx="2" fill="#4caf6b"/>
+  <!-- chip bluetooth -->
+  <rect x="42" y="220" width="80" height="48" rx="10" fill="white" stroke="#c8e6ce" stroke-width="1"/>
+  <text x="52" y="239" font-family="sans-serif" font-size="8" fill="#888">Conectado</text>
+  <text x="52" y="257" font-family="sans-serif" font-size="11" font-weight="600" fill="#1a3d1f">Bluetooth</text>
+  <!-- bolinhas decorativas -->
+  <circle cx="80" cy="340" r="6" fill="#4caf6b" opacity="0.4"/>
+  <circle cx="320" cy="320" r="4" fill="#4caf6b" opacity="0.3"/>
+  <circle cx="100" cy="150" r="3" fill="#2d6a35" opacity="0.4"/>
+</svg></div>
+  </section>
+ 
+  <!-- TRENDING -->
+  <section id="trending">
+    <div class="inner">
+      <h2 class="title">Em alta</h2>
+      <div class="trending-cards">
+ 
+        <div class="trending-card">
+          <div style="aspect-ratio:1;overflow:hidden;"><svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+  <rect width="280" height="280" fill="#d4edda"/>
+  <!-- bolhas decorativas -->
+  <circle cx="40" cy="40" r="24" fill="#4caf6b" opacity="0.15"/>
+  <circle cx="240" cy="220" r="32" fill="#4caf6b" opacity="0.12"/>
+  <circle cx="220" cy="50" r="14" fill="#4caf6b" opacity="0.1"/>
+  <!-- sombra -->
+  <ellipse cx="140" cy="256" rx="44" ry="8" fill="#4caf6b" opacity="0.2"/>
+  <!-- garrafa -->
+  <rect x="100" y="60" width="80" height="190" rx="16" fill="#1a3d1f"/>
+  <rect x="109" y="70" width="12" height="170" rx="5" fill="white" opacity="0.08"/>
+  <!-- tampa -->
+  <rect x="112" y="42" width="56" height="22" rx="7" fill="#0d1f10"/>
+  <rect x="122" y="35" width="36" height="10" rx="4" fill="#111"/>
+  <!-- display -->
+  <rect x="106" y="78" width="68" height="48" rx="6" fill="#061810" stroke="#4caf6b" stroke-width="1.5"/>
+  <text x="140" y="100" text-anchor="middle" font-family="monospace" font-size="15" font-weight="bold" fill="#4caf6b">750ml</text>
+  <text x="140" y="116" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#a8d5b5">Verde Floresta</text>
+  <!-- anel inferior -->
+  <rect x="100" y="228" width="80" height="8" rx="3" fill="#0d1f10" opacity="0.4"/>
+  <!-- folha decorativa -->
+  <ellipse cx="76" cy="160" rx="26" ry="11" fill="#4caf6b" opacity="0.3" transform="rotate(-45 76 160)"/>
+  <ellipse cx="204" cy="180" rx="22" ry="10" fill="#4caf6b" opacity="0.25" transform="rotate(40 204 180)"/>
+</svg></div>
+          <div class="trending-card-body">
+            <div class="trending-rate">
+              5 <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="trending-card-description">
+              EcoBottle
+              <span>Verde 750ml</span>
+            </p>
+          </div>
         </div>
-      </div>
-      <div class="feat-item">
-        <div class="feat-icon-box">📱</div>
-        <div>
-          <h3>App integrado</h3>
-          <p>Metas de hidratação, lembretes personalizados e histórico de consumo no celular.</p>
+ 
+        <div class="trending-card">
+          <div style="aspect-ratio:1;overflow:hidden;"><svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+  <rect width="280" height="280" fill="#e8eaf6"/>
+  <!-- bolhas decorativas -->
+  <circle cx="40" cy="40" r="24" fill="#7986cb" opacity="0.15"/>
+  <circle cx="240" cy="220" r="32" fill="#7986cb" opacity="0.12"/>
+  <circle cx="220" cy="50" r="14" fill="#7986cb" opacity="0.1"/>
+  <!-- sombra -->
+  <ellipse cx="140" cy="256" rx="44" ry="8" fill="#7986cb" opacity="0.2"/>
+  <!-- garrafa -->
+  <rect x="100" y="60" width="80" height="190" rx="16" fill="#1a237e"/>
+  <rect x="109" y="70" width="12" height="170" rx="5" fill="white" opacity="0.08"/>
+  <!-- tampa -->
+  <rect x="112" y="42" width="56" height="22" rx="7" fill="#0d1f10"/>
+  <rect x="122" y="35" width="36" height="10" rx="4" fill="#111"/>
+  <!-- display -->
+  <rect x="106" y="78" width="68" height="48" rx="6" fill="#061810" stroke="#7986cb" stroke-width="1.5"/>
+  <text x="140" y="100" text-anchor="middle" font-family="monospace" font-size="15" font-weight="bold" fill="#7986cb">500ml</text>
+  <text x="140" y="116" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#a8d5b5">Midnight Blue</text>
+  <!-- anel inferior -->
+  <rect x="100" y="228" width="80" height="8" rx="3" fill="#0d1f10" opacity="0.4"/>
+  <!-- folha decorativa -->
+  <ellipse cx="76" cy="160" rx="26" ry="11" fill="#7986cb" opacity="0.3" transform="rotate(-45 76 160)"/>
+  <ellipse cx="204" cy="180" rx="22" ry="10" fill="#7986cb" opacity="0.25" transform="rotate(40 204 180)"/>
+</svg></div>
+          <div class="trending-card-body">
+            <div class="trending-rate">
+              5 <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="trending-card-description">
+              EcoBottle
+              <span>Midnight 500ml</span>
+            </p>
+          </div>
         </div>
-      </div>
-      <div class="feat-item">
-        <div class="feat-icon-box">♻️</div>
-        <div>
-          <h3>Material reciclável</h3>
-          <p>Fabricada com aço inoxidável reciclado e embalagem 100% biodegradável.</p>
+ 
+        <div class="trending-card">
+          <div style="aspect-ratio:1;overflow:hidden;"><svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+  <rect width="280" height="280" fill="#e0f7fa"/>
+  <!-- bolhas decorativas -->
+  <circle cx="40" cy="40" r="24" fill="#26c6da" opacity="0.15"/>
+  <circle cx="240" cy="220" r="32" fill="#26c6da" opacity="0.12"/>
+  <circle cx="220" cy="50" r="14" fill="#26c6da" opacity="0.1"/>
+  <!-- sombra -->
+  <ellipse cx="140" cy="256" rx="44" ry="8" fill="#26c6da" opacity="0.2"/>
+  <!-- garrafa -->
+  <rect x="100" y="60" width="80" height="190" rx="16" fill="#006064"/>
+  <rect x="109" y="70" width="12" height="170" rx="5" fill="white" opacity="0.08"/>
+  <!-- tampa -->
+  <rect x="112" y="42" width="56" height="22" rx="7" fill="#0d1f10"/>
+  <rect x="122" y="35" width="36" height="10" rx="4" fill="#111"/>
+  <!-- display -->
+  <rect x="106" y="78" width="68" height="48" rx="6" fill="#061810" stroke="#26c6da" stroke-width="1.5"/>
+  <text x="140" y="100" text-anchor="middle" font-family="monospace" font-size="15" font-weight="bold" fill="#26c6da">1L</text>
+  <text x="140" y="116" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#a8d5b5">Ocean Deep</text>
+  <!-- anel inferior -->
+  <rect x="100" y="228" width="80" height="8" rx="3" fill="#0d1f10" opacity="0.4"/>
+  <!-- folha decorativa -->
+  <ellipse cx="76" cy="160" rx="26" ry="11" fill="#26c6da" opacity="0.3" transform="rotate(-45 76 160)"/>
+  <ellipse cx="204" cy="180" rx="22" ry="10" fill="#26c6da" opacity="0.25" transform="rotate(40 204 180)"/>
+</svg></div>
+          <div class="trending-card-body">
+            <div class="trending-rate">
+              5 <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="trending-card-description">
+              EcoBottle
+              <span>Ocean 1L</span>
+            </p>
+          </div>
         </div>
+ 
       </div>
-      <div class="feat-item">
-        <div class="feat-icon-box">🎨</div>
-        <div>
-          <h3>Design moderno</h3>
-          <p>Ergonômica, leve e com visual que combina com academia, trabalho e dia a dia.</p>
+    </div>
+  </section>
+ 
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="title">Sobre nós</h2>
+    <div class="about-content">
+ 
+      <div class="about-image" style="border-radius:16px;overflow:hidden;"><svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:16px;display:block;">
+  <rect width="300" height="400" fill="#c8e6ce"/>
+  <!-- céu / fundo -->
+  <rect width="300" height="200" fill="#d4edda"/>
+  <!-- montanhas -->
+  <polygon points="0,200 80,80 160,200" fill="#b8dfc2"/>
+  <polygon points="100,200 200,60 300,200" fill="#9fd4b0"/>
+  <polygon points="180,200 260,100 300,150 300,200" fill="#b8dfc2"/>
+  <!-- chão -->
+  <rect y="198" width="300" height="202" fill="#4caf6b" opacity="0.3"/>
+  <rect y="220" width="300" height="180" fill="#2d6a35" opacity="0.2"/>
+  <!-- árvore esquerda -->
+  <rect x="30" y="220" width="10" height="80" fill="#1a3d1f"/>
+  <ellipse cx="35" cy="210" rx="28" ry="32" fill="#2d6a35"/>
+  <ellipse cx="35" cy="195" rx="20" ry="22" fill="#3a8045"/>
+  <!-- árvore direita -->
+  <rect x="255" y="240" width="8" height="60" fill="#1a3d1f"/>
+  <ellipse cx="259" cy="232" rx="22" ry="26" fill="#2d6a35"/>
+  <!-- garrafa central -->
+  <rect x="120" y="140" width="60" height="180" rx="12" fill="#1a3d1f"/>
+  <rect x="128" y="150" width="10" height="160" rx="4" fill="#2d6a35" opacity="0.5"/>
+  <rect x="130" y="126" width="40" height="18" rx="6" fill="#0d2010"/>
+  <rect x="136" y="118" width="28" height="10" rx="4" fill="#111"/>
+  <!-- display pequeno na garrafa about -->
+  <rect x="126" y="158" width="48" height="36" rx="5" fill="#061810" stroke="#4caf6b" stroke-width="1"/>
+  <text x="150" y="174" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#4caf6b">750ml</text>
+  <text x="150" y="186" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#a8d5b5">hidratado</text>
+  <!-- folhas ao redor da garrafa -->
+  <ellipse cx="108" cy="230" rx="30" ry="14" fill="#4caf6b" opacity="0.7" transform="rotate(-40 108 230)"/>
+  <ellipse cx="192" cy="250" rx="28" ry="12" fill="#4caf6b" opacity="0.6" transform="rotate(35 192 250)"/>
+  <!-- gotinhas de água -->
+  <circle cx="90" cy="170" r="4" fill="#aee8ff" opacity="0.7"/>
+  <circle cx="215" cy="190" r="3" fill="#aee8ff" opacity="0.6"/>
+  <circle cx="75" cy="290" r="5" fill="#aee8ff" opacity="0.5"/>
+  <!-- sol -->
+  <circle cx="250" cy="50" r="28" fill="#fff9c4" opacity="0.8"/>
+  <circle cx="250" cy="50" r="20" fill="#ffe082" opacity="0.9"/>
+</svg></div>
+ 
+      <div class="about-info">
+        <h3>Nossa <span>História</span></h3>
+        <p>
+          Desde o início, nossa paixão pela sustentabilidade nos inspira
+          a criar produtos que fazem diferença de verdade.
+          Com <span>materiais recicláveis</span> e tecnologia integrada,
+          unimos design moderno, saúde e responsabilidade ambiental
+          em um só produto. Cada detalhe foi pensado para tornar
+          a hidratação parte natural da sua rotina.
+        </p>
+      </div>
+ 
+      <div class="about-info">
+        <h3>Nosso <span>Propósito</span></h3>
+        <p>
+          Inspirar hábitos mais saudáveis e um mundo com
+          menos plástico descartável. Acreditamos que pequenas
+          escolhas diárias somam grandes mudanças.
+          <span>Nosso compromisso</span> é oferecer qualidade,
+          tecnologia e consciência ambiental em cada garrafa
+          que chega às suas mãos.
+        </p>
+      </div>
+ 
+    </div>
+  </section>
+ 
+  <!-- PRODUCTS -->
+  <section id="products">
+    <div class="inner">
+      <h2 class="title">Novidades</h2>
+      <div class="products-cards">
+ 
+        <div class="products-card">
+          <div style="aspect-ratio:1;overflow:hidden;"><svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+  <rect width="260" height="260" fill="#eaf3de"/>
+  <circle cx="130" cy="130" r="80" fill="#4caf6b" opacity="0.12"/>
+  <ellipse cx="130" cy="246" rx="38" ry="7" fill="#4caf6b" opacity="0.2"/>
+  <rect x="95" y="55" width="70" height="172" rx="14" fill="#1a3d1f"/>
+  <rect x="103" y="64" width="10" height="154" rx="4" fill="white" opacity="0.07"/>
+  <rect x="106" y="38" width="48" height="20" rx="6" fill="#0d0d0d"/>
+  <rect x="115" y="30" width="30" height="10" rx="4" fill="#111"/>
+  <rect x="100" y="70" width="60" height="42" rx="5" fill="#061010" stroke="#4caf6b" stroke-width="1.2"/>
+  <text x="130" y="89" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#4caf6b">ECO</text>
+  <text x="130" y="103" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#aaa">Pro Verde</text>
+  <rect x="95" y="204" width="70" height="7" rx="3" fill="#0d0d0d" opacity="0.35"/>
+</svg></div>
+          <div class="product-content">
+            <h3>EcoBottle Pro <span>Verde Floresta</span></h3>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
  
-<!-- COMO FUNCIONA -->
-<section class="how-section" id="como-funciona">
-  <p class="section-eyebrow" style="color: var(--green-bright);">Simples assim</p>
-  <h2 class="section-title">Como funciona</h2>
-  <p class="section-sub" style="color: rgba(255,255,255,0.5);">Três passos e você já está monitorando sua hidratação.</p>
- 
-  <div class="steps-grid">
-    <div class="step-box">
-      <div class="step-num">01</div>
-      <span class="step-icon">📦</span>
-      <h3>Receba sua EcoBottle</h3>
-      <p>Compre online e receba em casa. Setup em 2 minutos, sem ferramentas.</p>
-    </div>
-    <div class="step-box">
-      <div class="step-num">02</div>
-      <span class="step-icon">📲</span>
-      <h3>Conecte ao aplicativo</h3>
-      <p>Baixe o app EcoWave, faça o par via Bluetooth e configure suas metas diárias.</p>
-    </div>
-    <div class="step-box">
-      <div class="step-num">03</div>
-      <span class="step-icon">💧</span>
-      <h3>Hidrate-se e acompanhe</h3>
-      <p>A garrafa registra cada gole. Receba lembretes e veja seu progresso em tempo real.</p>
-    </div>
-    <div class="step-box">
-      <div class="step-num">04</div>
-      <span class="step-icon">🌱</span>
-      <h3>Impacte o planeta</h3>
-      <p>Cada garrafa substitui centenas de descartáveis. Veja no app seu impacto ambiental.</p>
-    </div>
-  </div>
-</section>
- 
-<!-- SUSTENTABILIDADE -->
-<section class="eco-section" id="sustentabilidade">
-  <p class="section-eyebrow">Compromisso ambiental</p>
-  <h2 class="section-title">Feita para durar.<br>Criada para preservar.</h2>
-  <p class="section-sub">Cada EcoBottle elimina centenas de garrafas plásticas por ano.</p>
- 
-  <div class="eco-grid">
-    <div class="eco-card">
-      <span class="eco-icon">♻️</span>
-      <h3>Materiais recicláveis</h3>
-      <p>Aço inoxidável e plástico reciclado pós-consumo.</p>
-    </div>
-    <div class="eco-card">
-      <span class="eco-icon">🚯</span>
-      <h3>Zero desperdício</h3>
-      <p>Embalagem 100% biodegradável. Sem plástico de um só uso.</p>
-    </div>
-    <div class="eco-card">
-      <span class="eco-icon">🌊</span>
-      <h3>Menos plástico no mar</h3>
-      <p>Cada venda financia ações de limpeza de praias e rios.</p>
-    </div>
-    <div class="eco-card">
-      <span class="eco-icon">📢</span>
-      <h3>Campanhas ambientais</h3>
-      <p>Participamos ativamente de eventos e causas ecológicas.</p>
-    </div>
-  </div>
-</section>
- 
-<!-- PÚBLICO ALVO -->
-<section class="audience-section">
-  <p class="section-eyebrow">Para quem é</p>
-  <h2 class="section-title">Feita para quem não para</h2>
-  <p class="section-sub">Seja você atleta, estudante ou profissional — a EcoBottle se adapta ao seu ritmo.</p>
- 
-  <div class="audience-grid">
-    <div class="audience-pill"><span class="pill-icon">🏃</span> Atletas</div>
-    <div class="audience-pill"><span class="pill-icon">📚</span> Estudantes</div>
-    <div class="audience-pill"><span class="pill-icon">💼</span> Trabalhadores</div>
-    <div class="audience-pill"><span class="pill-icon">🧘</span> Jovens e adultos</div>
-    <div class="audience-pill"><span class="pill-icon">🌿</span> Conscientes ambientalmente</div>
-  </div>
-</section>
- 
-<!-- DEPOIMENTOS -->
-<section class="testi-section">
-  <p class="section-eyebrow">Quem já usa</p>
-  <h2 class="section-title">A comunidade EcoWave</h2>
- 
-  <div class="testi-grid">
-    <div class="testi-card">
-      <div class="stars">★★★★★</div>
-      <p>"Bebo muito mais água agora. O lembrete do app é discreto e o display da garrafa me ajuda a acompanhar a meta sem precisar pegar o celular."</p>
-      <div class="testi-author">
-        <div class="avatar-circle">MC</div>
-        <div class="author-info">
-          <div class="author-name">Marina C.</div>
-          <div class="author-role">Personal trainer</div>
+        <div class="products-card">
+          <div style="aspect-ratio:1;overflow:hidden;"><svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+  <rect width="260" height="260" fill="#e3f2fd"/>
+  <circle cx="130" cy="130" r="80" fill="#42a5f5" opacity="0.12"/>
+  <ellipse cx="130" cy="246" rx="38" ry="7" fill="#42a5f5" opacity="0.2"/>
+  <rect x="95" y="55" width="70" height="172" rx="14" fill="#0d47a1"/>
+  <rect x="103" y="64" width="10" height="154" rx="4" fill="white" opacity="0.07"/>
+  <rect x="106" y="38" width="48" height="20" rx="6" fill="#0d0d0d"/>
+  <rect x="115" y="30" width="30" height="10" rx="4" fill="#111"/>
+  <rect x="100" y="70" width="60" height="42" rx="5" fill="#061010" stroke="#42a5f5" stroke-width="1.2"/>
+  <text x="130" y="89" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#42a5f5">ECO</text>
+  <text x="130" y="103" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#aaa">Slim Azul</text>
+  <rect x="95" y="204" width="70" height="7" rx="3" fill="#0d0d0d" opacity="0.35"/>
+</svg></div>
+          <div class="product-content">
+            <h3>EcoBottle Slim <span>Azul Oceano</span></h3>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="testi-card">
-      <div class="stars">★★★★★</div>
-      <p>"Comprei pensando no meio ambiente e acabei descobrindo que o app é incrível. Fico motivado de verdade a me hidratar durante a faculdade."</p>
-      <div class="testi-author">
-        <div class="avatar-circle">RL</div>
-        <div class="author-info">
-          <div class="author-name">Rafael L.</div>
-          <div class="author-role">Estudante de Engenharia</div>
+ 
+        <div class="products-card">
+          <div style="aspect-ratio:1;overflow:hidden;"><svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+  <rect width="260" height="260" fill="#f3f3f3"/>
+  <circle cx="130" cy="130" r="80" fill="#9e9e9e" opacity="0.12"/>
+  <ellipse cx="130" cy="246" rx="38" ry="7" fill="#9e9e9e" opacity="0.2"/>
+  <rect x="95" y="55" width="70" height="172" rx="14" fill="#424242"/>
+  <rect x="103" y="64" width="10" height="154" rx="4" fill="white" opacity="0.07"/>
+  <rect x="106" y="38" width="48" height="20" rx="6" fill="#0d0d0d"/>
+  <rect x="115" y="30" width="30" height="10" rx="4" fill="#111"/>
+  <rect x="100" y="70" width="60" height="42" rx="5" fill="#061010" stroke="#9e9e9e" stroke-width="1.2"/>
+  <text x="130" y="89" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#9e9e9e">ECO</text>
+  <text x="130" y="103" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#aaa">Sport Cinza</text>
+  <rect x="95" y="204" width="70" height="7" rx="3" fill="#0d0d0d" opacity="0.35"/>
+</svg></div>
+          <div class="product-content">
+            <h3>EcoBottle Sport <span>Cinza Titânio</span></h3>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="testi-card">
-      <div class="stars">★★★★★</div>
-      <p>"Design bonito, fácil de usar e o material é de qualidade. Já me perguntaram na academia onde comprei umas cinco vezes."</p>
-      <div class="testi-author">
-        <div class="avatar-circle">JS</div>
-        <div class="author-info">
-          <div class="author-name">Juliana S.</div>
-          <div class="author-role">Designer</div>
+ 
+        <div class="products-card">
+          <div style="aspect-ratio:1;overflow:hidden;"><svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+  <rect width="260" height="260" fill="#1a1a2e"/>
+  <circle cx="130" cy="130" r="80" fill="#7c4dff" opacity="0.12"/>
+  <ellipse cx="130" cy="246" rx="38" ry="7" fill="#7c4dff" opacity="0.2"/>
+  <rect x="95" y="55" width="70" height="172" rx="14" fill="#0d0d14"/>
+  <rect x="103" y="64" width="10" height="154" rx="4" fill="white" opacity="0.07"/>
+  <rect x="106" y="38" width="48" height="20" rx="6" fill="#0d0d0d"/>
+  <rect x="115" y="30" width="30" height="10" rx="4" fill="#111"/>
+  <rect x="100" y="70" width="60" height="42" rx="5" fill="#061010" stroke="#7c4dff" stroke-width="1.2"/>
+  <text x="130" y="89" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#7c4dff">ECO</text>
+  <text x="130" y="103" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#aaa">Night Preto</text>
+  <rect x="95" y="204" width="70" height="7" rx="3" fill="#0d0d0d" opacity="0.35"/>
+</svg></div>
+          <div class="product-content">
+            <h3>EcoBottle Night <span>Preto Mate</span></h3>
+          </div>
         </div>
+ 
       </div>
     </div>
-  </div>
-</section>
+  </section>
  
-<!-- PREÇOS -->
-<section class="pricing-section" id="precos">
-  <p class="section-eyebrow">Preços</p>
-  <h2 class="section-title">Simples e transparente</h2>
-  <p class="section-sub">Sem surpresas. Escolha o plano que faz mais sentido pra você.</p>
- 
-  <div class="pricing-grid">
-    <div class="plan">
-      <h3>EcoBottle Básica</h3>
-      <div class="price"><sup>R$</sup>149</div>
-      <div class="period">pagamento único</div>
-      <ul>
-        <li>Garrafa 500ml</li>
-        <li>Display de volume</li>
-        <li>App grátis básico</li>
-        <li>Garantia de 1 ano</li>
-      </ul>
-      <button class="plan-btn">Comprar agora</button>
-    </div>
- 
-    <div class="plan featured">
-      <div class="plan-badge">⭐ Mais popular</div>
-      <h3 style="color: rgba(255,255,255,0.7);">EcoBottle Pro</h3>
-      <div class="price"><sup>R$</sup>249</div>
-      <div class="period">pagamento único</div>
-      <ul>
-        <li>Garrafa 750ml</li>
-        <li>Display inteligente</li>
-        <li>App completo + metas</li>
-        <li>Lembretes personalizados</li>
-        <li>Garantia de 2 anos</li>
-      </ul>
-      <button class="plan-btn">Comprar agora</button>
-    </div>
- 
-    <div class="plan">
-      <h3>Kit EcoWave</h3>
-      <div class="price"><sup>R$</sup>399</div>
-      <div class="period">pagamento único</div>
-      <ul>
-        <li>2 garrafas Pro 750ml</li>
-        <li>App premium vitalício</li>
-        <li>Frete grátis</li>
-        <li>Garantia de 3 anos</li>
-      </ul>
-      <button class="plan-btn">Comprar kit</button>
-    </div>
-  </div>
-</section>
- 
-<!-- FAQ -->
-<section class="faq-section">
-  <p class="section-eyebrow">Dúvidas</p>
-  <h2 class="section-title">Perguntas frequentes</h2>
- 
-  <div class="faq-list">
-    <div class="faq-item">
-      <div class="faq-q">O app funciona em Android e iOS?</div>
-      <div class="faq-a">Sim. O app EcoWave está disponível gratuitamente para Android (Play Store) e iOS (App Store), compatível com smartphones a partir do Android 9 e iOS 13.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">A garrafa é resistente para academia e esportes?</div>
-      <div class="faq-a">Totalmente. A EcoBottle é feita em aço inoxidável dupla camada, resistente a quedas e mantém a temperatura da bebida por até 12 horas.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Qual é a garantia e política de troca?</div>
-      <div class="faq-a">Oferecemos garantia contra defeitos de fabricação (1 a 3 anos conforme o modelo) e aceitamos trocas em até 30 dias após a entrega.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Como é a sustentabilidade da embalagem?</div>
-      <div class="faq-a">A embalagem é 100% biodegradável, sem plástico. Os materiais da garrafa são recicláveis e o processo de fabricação segue critérios ambientais rigorosos.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Posso presentear alguém com a EcoBottle?</div>
-      <div class="faq-a">Claro! Oferecemos embalagem especial para presente e cartão personalizado. Uma ótima opção para quem se preocupa com saúde e meio ambiente.</div>
-    </div>
-  </div>
-</section>
- 
-<!-- CTA FINAL -->
-<section class="cta-section">
-  <p class="section-eyebrow" style="color: var(--green-bright); margin-bottom: 16px;">Faça parte do movimento</p>
-  <h2>Comece hoje. O planeta agradece.</h2>
-  <p>Cada EcoBottle é um passo a menos em direção ao descartável. Escolha a versão certa pra você.</p>
-  <button class="btn-hero" style="font-size: 16px; padding: 16px 40px;">Quero minha EcoBottle →</button>
-</section>
+</main>
  
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo"><span class="eco">Eco</span>Wave</div>
-  <div class="footer-links">
-    <a href="#">Privacidade</a>
-    <a href="#">Termos de uso</a>
-    <a href="#">Contato</a>
-    <a href="#">Instagram</a>
-  </div>
-  <p class="footer-copy">© 2025 EcoWave · Hidrate-se. Preserve-se. Evolua.</p>
+  <p>
+    Copyright 2026
+    <i class="fa-regular fa-copyright"></i>
+    Feito por Enzzo Ferreira
+  </p>
 </footer>
  
+<script defer>
+  const btn = document.querySelector('.btn-mobile');
+  const links = document.getElementById('nav-links');
+  document.addEventListener('click', e => {
+    if (!btn.contains(e.target) && !links.contains(e.target)) {
+      links.classList.remove('open');
+    }
+  });
+</script>
 </body>
 </html>
